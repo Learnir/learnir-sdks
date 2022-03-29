@@ -3,8 +3,8 @@
 - We simply have a yaml of the endpoints of our API's, we run 
 
 
-## Generating an ask
-- Verify the sdk.yaml and then run the following command to generate the sdk
+## Generating an sdk
+- Verify the sdk-spec.yaml and then run the following command to generate the sdk
 
 
 ## Foundations
@@ -15,15 +15,15 @@
 - Generation at best should be automated always.
 
 ### Javascript
-openapi-generator-cli generate -g typescript-axios -i ./sdk.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
+- openapi-generator-cli generate -g typescript-axios -i ./sdk.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
 
 
 ### Nodejs
-openapi-generator-cli generate -g typescript-node  -i ./sdk.yaml -o sdks/learnir-nodejs -p npmName=learnir-nodejs,supportsES6=true,modelPropertyNaming=original
+- openapi-generator-cli generate -g typescript-node  -i ./sdk.yaml -o sdks/learnir-nodejs -p npmName=learnir-nodejs,supportsES6=true,modelPropertyNaming=original
 
 
 ## Testing
-npm install C:\Users\dell\Desktop\Learnir\@integrations\sdks\learnir-javascript
+npm install .\sdks\learnir-javascript
 
 
 ## Resources
