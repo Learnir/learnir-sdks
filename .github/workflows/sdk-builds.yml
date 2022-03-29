@@ -29,7 +29,7 @@ on:
     branches:
       - main
 jobs:
-  build-go:
+  run-client-builds:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -43,8 +43,15 @@ jobs:
       - name: Build SDK clients, Publish for Deployment 🚀
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         # generate the javascript sdk
         run: |
           npm install @openapitools/openapi-generator-cli -g
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
+          cd sdks/learnir-javascript
+          git init
+          git add README.md
+          git commit -m "init"
+          git branch -M main
+          git remote add origin https://github.com/Learnir/learnir-javascript-sdk.git
+          git push -u origin main
