@@ -44,7 +44,7 @@ jobs:
 
 
       - name: Build learnir-javascript-sdk to NPM
-        run: 
+        run: |
           cd sdks/learnir-javascript-sdk
           npm install && npm run build
           npm publish
