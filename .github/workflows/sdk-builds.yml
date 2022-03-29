@@ -42,7 +42,6 @@ jobs:
           user-email: henry@learnir.co
           target-branch: main
 
-
       - name: Build learnir-javascript-sdk to NPM
         run: |
           cd sdks/learnir-javascript-sdk
