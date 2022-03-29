@@ -45,12 +45,15 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         # generate the javascript sdk
+        # as in in a local pc
+        # we want to setup a github committer on the fly
+        # then we want to commit the code generated to the respository
         run: |
           npm install @openapitools/openapi-generator-cli -g
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript
           git config --global user.email "apps@henryasante.com"
-          git config --global user.name "ha-sante"
+          git config --global user.name "Henry Asante"
           git config --global init.defaultBranch main
           git init
           git remote add origin https://github.com/Learnir/learnir-javascript-sdk
