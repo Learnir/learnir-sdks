@@ -1,8 +1,33 @@
-name: API CLients
+# On changes, setup a simple local environment
+# Install nodejs, install the open-api-cli tooling
+# Run the open-api generator for the languages we want to build for
+# Each has to be explicitly written
+# We take the folder and commit it to a repository made for it
+
+# All parts have to be explicit so we know, we wrote what
+
+# go get golang.org/x/tools/cmd/goimports
+# npm install
+# npm run generate.go
+# git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-go.git clones/go &> /dev/null
+# rsync -a --delete --exclude='.git/' clients/go/ clones/go
+# cd clones/go
+# goimports -w .
+# if [ -n "$(git status --porcelain)" ]; then
+# git config --global user.email "support@phrase.com"
+# git config --global user.name "Phrase"
+# git add .
+# git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
+# git push origin master
+# else
+# echo "  No changes, skipping."
+# fi
+
+name: Build API CLients
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build-go:
     runs-on: ubuntu-latest
@@ -10,30 +35,16 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
-      -
-        name: Set up Go
-        uses: actions/setup-go@v2
+          persist-credentials: true
+      - uses: actions/setup-node@v2
         with:
-          go-version: 1.14
-      - name: Build and Deploy 🚀
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Build SDK clients, Publish for Deployment 🚀
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # generate the javascript sdk
         run: |
-          go get golang.org/x/tools/cmd/goimports
-          npm install
-          npm run generate.go
-          git clone --depth 1 https://$API_TOKEN_GITHUB@github.com/phrase/phrase-go.git clones/go &> /dev/null
-          rsync -a --delete --exclude='.git/' clients/go/ clones/go
-          cd clones/go
-          goimports -w .
-          if [ -n "$(git status --porcelain)" ]; then
-          git config --global user.email "support@phrase.com"
-          git config --global user.name "Phrase"
-          git add .
-          git commit --message "Deploying from  phrase/openapi@${GITHUB_SHA::8}"
-          git push origin master
-          else
-          echo "  No changes, skipping."
-          fi
+          npm install @openapitools/openapi-generator-cli -g
+          openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
