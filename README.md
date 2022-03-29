@@ -1,3 +1,5 @@
+[<img src="https://learnir.co/logo.svg" width="250"/>](https://learnir.co/logo.svg)
+
 ## Hello you!
 Welcome to the learnir-sdks repositories
 
@@ -15,7 +17,7 @@ npm install learnir-javascript-sdk
 ``
 
 ## Get content & Add Consumer details
-``
+````
 const learnir = require("../sdks/learnir-javascript");
 let client = new learnir.LearnirApi({ baseOptions: { headers: { 'key': "port-access-key-from-console-dashboard" } } });
 
@@ -40,5 +42,4 @@ client.consumer({ id: 'your-consumer-id', name: 'John Doe', email: 'your-consume
 }).catch(error => {
     console.log("consumer-create-error", error);
 })
-
-``
+`````
