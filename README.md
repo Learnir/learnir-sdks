@@ -1,4 +1,4 @@
-[<img src="https://learnir.co/logo.svg" width="250"/>](https://learnir.co/logo.svg)
+[<img src="https://learnir.co/logo.svg" width="80"/>](https://learnir.co/logo.svg)
 
 ## Hello you!
 Welcome to the learnir-sdks repositories
