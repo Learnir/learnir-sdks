@@ -49,6 +49,8 @@ jobs:
           npm install @openapitools/openapi-generator-cli -g
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript
+          git config --global user.email "apps@henryasante.com"
+          git config --global user.name "Henry Asante"
           git init
           git add README.md
           git commit -m "init"
