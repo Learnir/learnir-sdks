@@ -48,15 +48,26 @@ jobs:
         # as in in a local pc
         # we want to setup a github committer on the fly
         # then we want to commit the code generated to the respository
+        # https://github.com/Learnir/learnir-javascript-sdk
+        # git config --global user.email "apps@henryasante.com"
+        # git config --global user.name "Henry Asante"
+        # git config --global init.defaultBranch main
+        # git init
+        # git remote add origin git@git.drupal.org:learnir/learnir-javascript-sdk.git
+        # git add .
+        # git commit -m "init"
+        # git push -u origin main
         run: |
           npm install @openapitools/openapi-generator-cli -g
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript
-          git config --global user.email "apps@henryasante.com"
-          git config --global user.name "Henry Asante"
-          git config --global init.defaultBranch main
-          git init
-          git remote add origin https://github.com/Learnir/learnir-javascript-sdk
-          git add .
-          git commit -m "init"
-          git push -u origin main
+      - name: Push generated js sdk to it's repository
+      - uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        with:
+          source-directory: "sdks/learnir-javascript"
+          destination-github-username: "Learnir"
+          destination-repository-name: "learnir-javascript-sdk"
+          user-email: henry@learnir.co
+          target-branch: main
