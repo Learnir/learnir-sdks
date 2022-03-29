@@ -54,6 +54,6 @@ jobs:
           git init
           git add README.md
           git commit -m "init"
-          git branch -M main
-          git remote add origin https://github.com/Learnir/learnir-javascript-sdk.git
+          git branch -m main
+          git remote add origin https://github.com/Learnir/learnir-javascript-sdk
           git push -u origin main
