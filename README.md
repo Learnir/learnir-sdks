@@ -30,7 +30,7 @@ client.content().then(response => {
 })
 
 // Get content and tie it to an added consumer 
-client.content(consumer-id).then(response => {
+client.content("consumer-id").then(response => {
     console.log("response", response.data);
 }).catch(error => {
     console.log("error", error);
