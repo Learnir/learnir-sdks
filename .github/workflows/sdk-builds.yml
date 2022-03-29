@@ -59,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           npm install @openapitools/openapi-generator-cli -g
-          openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
+          openapi-generator-cli generate -g javascript -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript
       - name: Push generated js sdk to it's repository
         uses: cpina/github-action-push-to-another-repository@main
