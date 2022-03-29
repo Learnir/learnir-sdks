@@ -20,7 +20,7 @@ npm install learnir-javascript-sdk
 ## Get content & Add Consumer details
 ````javascript
 const learnir = require("../sdks/learnir-javascript");
-let client = new learnir.LearnirApi({ baseOptions: { headers: { 'key': "port-access-key-from-console-dashboard" } } });
+const client = new learnir.LearnirApi({baseOptions:{headers:{"key":"port-access-key-from-console-dashboard"}}});
 
 // Get content without tying it to a consumer
 client.content().then(response => {
