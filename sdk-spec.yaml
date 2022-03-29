@@ -1,7 +1,6 @@
 openapi: 3.0.0
 servers:
-  # - url: "https://api.learnir.co/v1"
-  - url: "http://localhost:9060/v1"
+  - url: "https://api.learnir.co/v1"
 info:
   title: Learnir Javascript
   description: Welcome to the Learnir Javascript sdk, get your content right in the browser anywhere and everywhere.
@@ -9,9 +8,6 @@ info:
   contact:
     name: Learnir Engineering
     url: https://learnir.co
-# tags:
-#   - name: learnir
-#     description: Your knowledge infrastructure platform
 paths:
   /intergration/sdk/content:
     get:
