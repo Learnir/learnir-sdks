@@ -1,0 +1,88 @@
+openapi: 3.0.0
+servers:
+  # - url: "https://api.learnir.co/v1"
+  - url: "http://localhost:9060/v1"
+info:
+  title: Learnir Javascript
+  description: Welcome to the Learnir Javascript sdk, get your content right in the browser anywhere and everywhere.
+  version: 1.0.0
+  contact:
+    name: Learnir Engineering
+    url: https://learnir.co
+# tags:
+#   - name: learnir
+#     description: Your knowledge infrastructure platform
+paths:
+  /intergration/sdk/content:
+    get:
+      tags: ["learnir"]
+      summary: Get your Port content
+      description: "Gets an Array of your content boxes(objects) in a formatted manner"
+      operationId: content
+      parameters:
+        - name: consumer
+          in: query
+          description: The id of the created consumer
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Content is ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Content"
+        "404":
+          description: Port access key is invalid or not present
+  /intergration/sdk/consumer:
+    post:
+      tags: ["learnir"]
+      summary: Create a New Consumer on Learnir
+      description: "This creates a consumer using the details you provide and in future helps us identify when someone particular is making use of your content boxes"
+      operationId: consumer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consumer'
+      responses:
+        "200":
+          description: Consumer Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Consumer"
+        "404":
+          description: Create Consumer Error, support + data recheck.
+components:
+  schemas:
+    Consumer:
+      title: Content Consumer
+      description: Creation of a User to allow access to locked resources
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+    Box:
+      title: Content Box
+      description: Base of content boxes, is dynamic though
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+    Content:
+      type: array
+      items:
+        $ref: "#/components/schemas/Box"
