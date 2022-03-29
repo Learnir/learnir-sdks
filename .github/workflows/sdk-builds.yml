@@ -51,9 +51,9 @@ jobs:
           cd sdks/learnir-javascript
           git config --global user.email "apps@henryasante.com"
           git config --global user.name "ha-sante"
+          git config --global init.defaultBranch main
           git init
-          git add README.md
-          git commit -m "init"
-          git branch -m main
           git remote add origin https://github.com/Learnir/learnir-javascript-sdk
+          git add .
+          git commit -m "init"
           git push -u origin main
