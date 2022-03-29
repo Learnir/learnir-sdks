@@ -23,6 +23,19 @@
 # echo "  No changes, skipping."
 # fi
 
+# as in in a local pc
+# we want to setup a github committer on the fly
+# then we want to commit the code generated to the respository
+# https://github.com/Learnir/learnir-javascript-sdk
+# git config --global user.email "apps@henryasante.com"
+# git config --global user.name "Henry Asante"
+# git config --global init.defaultBranch main
+# git init
+# git remote add origin git@git.drupal.org:learnir/learnir-javascript-sdk.git
+# git add .
+# git commit -m "init"
+# git push -u origin main
+
 name: Build API CLients
 on:
   push:
@@ -44,25 +57,12 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        # generate the javascript sdk
-        # as in in a local pc
-        # we want to setup a github committer on the fly
-        # then we want to commit the code generated to the respository
-        # https://github.com/Learnir/learnir-javascript-sdk
-        # git config --global user.email "apps@henryasante.com"
-        # git config --global user.name "Henry Asante"
-        # git config --global init.defaultBranch main
-        # git init
-        # git remote add origin git@git.drupal.org:learnir/learnir-javascript-sdk.git
-        # git add .
-        # git commit -m "init"
-        # git push -u origin main
         run: |
           npm install @openapitools/openapi-generator-cli -g
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript
       - name: Push generated js sdk to it's repository
-      - uses: cpina/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
