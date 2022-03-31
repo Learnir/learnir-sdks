@@ -52,6 +52,27 @@ paths:
                 $ref: "#/components/schemas/Consumer"
         "404":
           description: Create Consumer Error, support + data recheck.
+/intergration/sdk/consumer/event:
+    post:
+      tags: ["learnir"]
+      summary: Record learning experience event
+      description: "This creates an consumer analytics event, used in showing you how your learning experience is used and performing"
+      operationId: record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        "200":
+          description: Consumer Event Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Consumer"
+        "404":
+          description: Create consumer event error, support + data recheck.
 components:
   schemas:
     Consumer:
@@ -82,3 +103,12 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Box"
+    Event:
+      title: Consumer analytics event
+      description: Record usage of a consumer in your learning experience
+      type: object
+      properties:
+        consumer:
+          type: string
+        event:
+          type: string
