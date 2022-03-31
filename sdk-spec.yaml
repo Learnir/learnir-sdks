@@ -4,12 +4,12 @@ servers:
 info:
   title: Learnir Javascript
   description: Welcome to the Learnir Javascript sdk, get your content right in the browser anywhere and everywhere.
-  version: 1.0.2
+  version: 1.0.3
   contact:
     name: Learnir Engineering
     url: https://learnir.co
 paths:
-  /intergration/sdk/content:
+  /integration/sdk/content:
     get:
       tags: ["learnir"]
       summary: Get your Port content
@@ -31,7 +31,7 @@ paths:
                 $ref: "#/components/schemas/Content"
         "404":
           description: Port access key is invalid or not present
-  /intergration/sdk/consumer:
+  /integration/sdk/consumer:
     post:
       tags: ["learnir"]
       summary: Create a New Consumer on Learnir
@@ -52,7 +52,7 @@ paths:
                 $ref: "#/components/schemas/Consumer"
         "404":
           description: Create Consumer Error, support + data recheck.
-  /intergration/sdk/consumer/event:
+  /integration/sdk/consumer/event:
     post:
       tags: ["learnir"]
       summary: Record learning experience event
