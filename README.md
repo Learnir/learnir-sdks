@@ -36,11 +36,33 @@ client.content("consumer-id").then(response => {
     console.log("error", error);
 })
 
-// Best add this by calling for all your users and adding or
-// Add in it in your auth flow, right in the browser in the signup process
-client.consumer({ id: 'your-consumer-id', name: 'John Doe', email: 'your-consumer@email.com' }).then(response => {
+// (If you have users already): Call and add then with this method, best in batches
+// (As a default): In auth flow, add this right in the browser in the signup process
+client.consumer({ id: 'consumer-id', name: 'John Doe', email: 'consumer@email.com' }).then(response => {
     console.log("consumer-create", response.data);
 }).catch(error => {
     console.log("consumer-create-error", error);
 })
+
+
+// (Recording consumer learning experience events) 
+// Call this method on various official and custom events
+// Official events are found in console.learnir.co/build
+// Official events are highlighted in the reports feature.
+//---------------------------------------------------------
+
+// Attach to a consumer:
+client.record({ consumer: "consumer-id", event: 'active' }).then(response => {
+    console.log("create-consumer-event", response.data);
+}).catch(error => {
+    console.log("create-consumer-error", error);
+})
+
+// Unattached to a consumer
+client.record({ event: 'active' }).then(response => {
+    console.log("create-consumer-event", response.data);
+}).catch(error => {
+    console.log("create-consumer-error", error);
+})
+
 `````
