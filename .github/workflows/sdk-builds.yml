@@ -32,8 +32,6 @@ jobs:
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript-sdk -p npmName=learnir-javascript-sdk,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript-sdk
           npm version patch
-        # in the folder of the sdk
-        # parse the package JSON and increase the versioning
       - name: Push generated js sdk to it's repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
