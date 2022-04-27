@@ -31,9 +31,7 @@ jobs:
           npm install @openapitools/openapi-generator-cli -g
           openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o sdks/learnir-javascript-sdk -p npmName=learnir-javascript-sdk,supportsES6=true,modelPropertyNaming=original
           cd sdks/learnir-javascript-sdk
-          npm i -g update-version
-          update-version --minor 1
-
+          npm version patch
         # in the folder of the sdk
         # parse the package JSON and increase the versioning
       - name: Push generated js sdk to it's repository
