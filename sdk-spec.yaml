@@ -87,6 +87,8 @@ components:
           type: string
         email:
           type: string
+        image:
+          type: string
     Box:
       title: Content Box
       description: Base of content boxes, is dynamic though
@@ -112,3 +114,6 @@ components:
           type: string
         event:
           type: string
+        context:
+          type: object
+
