@@ -45,7 +45,6 @@ jobs:
         run: |
           cd sdks/learnir-javascript-sdk
           npm install && npm run build
-          npm version patch --force
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_LEARNIR_TOKEN }}
