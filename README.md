@@ -29,7 +29,7 @@ client.content().then(response => {
     console.log("error", error);
 })
 
-// Get content and tie it to an added consumer 
+// Get content and tye it to an added consumer 
 client.content("consumer-id").then(response => {
     console.log("response", response.data);
 }).catch(error => {
@@ -52,17 +52,38 @@ client.consumer({ id: 'consumer-id', name: 'John Doe', email: 'consumer@email.co
 //---------------------------------------------------------
 
 // Attach to a consumer:
-client.record({ consumer: "consumer-id", event: 'active' }).then(response => {
+client.record({ consumer: "consumer-id", event: 'active', context: {} }).then(response => {
     console.log("create-consumer-event", response.data);
 }).catch(error => {
     console.log("create-consumer-error", error);
 })
 
-// Unattached to a consumer
-client.record({ event: 'active' }).then(response => {
+// Unattached to a consumer (Not recommended)
+client.record({ event: 'active', context: {} }).then(response => {
     console.log("create-consumer-event", response.data);
 }).catch(error => {
     console.log("create-consumer-error", error);
 })
 
+// Consumers events - used for answering learning state questions
+client.records("consumer-id").then(response => {
+    console.log("consumer-events", response.data);
+}).catch(error => {
+    console.log("consumer-events", error);
+})
+
+// Official events - Highlighted in learnir console.
+let official_events = [
+    "box.visit", // pass box id
+    "box.enrolled", // pass box id
+    "section.visit", // pass box & section id
+    "section.video.watch",  // pass box & section id
+    "section.video.complete", // pass box & section id
+    "section.complete",  // pass box & section id
+    "box.complete" // pass box id
+];
+
+// Official events etc are already setup in templates
+// If making use of custom development(e.g from scratch) - recording these events is required
+// Other events if tyed to a consumed a consumer are welcome per your use case.
 `````
