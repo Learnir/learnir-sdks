@@ -81,7 +81,7 @@ paths:
       operationId: records
       parameters:
         - name: consumer
-          in: query
+          in: path
           description: The id of the created consumer
           required: true
           schema:

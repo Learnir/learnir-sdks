@@ -15,7 +15,7 @@
 - Generation at best should be automated always.
 
 ### Javascript
-- openapi-generator-cli generate -g typescript-axios -i ./sdk.yaml -o sdks/learnir-javascript -p npmName=learnir-javascript,supportsES6=true,modelPropertyNaming=original
+- openapi-generator-cli generate -g typescript-axios -i ./sdk-spec.yaml -o builds/sdks/learnir-javascript-sdk -p npmName=learnir-javascript-sdk,supportsES6=true,modelPropertyNaming=original
 
 
 ### Nodejs
@@ -28,3 +28,4 @@ npm install .\sdks\learnir-javascript
 
 ## Resources
 https://phrase.com/blog/posts/using-openapi-to-generate-api-client-code/
+https://openapi.tools/
