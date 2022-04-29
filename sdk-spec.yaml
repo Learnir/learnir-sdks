@@ -73,29 +73,29 @@ paths:
                 $ref: "#/components/schemas/Consumer"
         "404":
           description: Create consumer event error, support + data recheck.
-/integration/sdk/consumer/events:
-  get:
-    tags: ["learnir"]
-    summary: Get consumer events
-    description: "Gets an Array of your consumer events(objects) for answers on learning states. etc"
-    operationId: records
-    parameters:
-      - name: consumer
-        in: query
-        description: The id of the created consumer
-        required: true
-        schema:
-          type: string
-    responses:
-      "200":
-        description: Consumer events is ready
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Events"
-      "404":
-        description: Data requirements un-met. (Consumer_id and distribution_port)
-        
+  /integration/sdk/consumer/events:
+    get:
+      tags: ["learnir"]
+      summary: Get consumer events
+      description: "Gets an Array of your consumer events(objects) for answers on learning states. etc"
+      operationId: records
+      parameters:
+        - name: consumer
+          in: query
+          description: The id of the created consumer
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Consumer events is ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Events"
+        "404":
+          description: Data requirements un-met. (Consumer_id and distribution_port)
+
 components:
   schemas:
     Consumer:
