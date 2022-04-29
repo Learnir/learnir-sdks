@@ -2,9 +2,9 @@ openapi: 3.0.0
 servers:
   - url: "https://api.learnir.co/v1"
 info:
-  title: Learnir Javascript
+  title: Learnir Javascript SDK
   description: Welcome to the Learnir Javascript sdk, get your content right in the browser anywhere and everywhere.
-  version: 1.0.8
+  version: 1.0.9
   contact:
     name: Learnir Engineering
     url: https://learnir.co
@@ -73,14 +73,14 @@ paths:
                 $ref: "#/components/schemas/Consumer"
         "404":
           description: Create consumer event error, support + data recheck.
-  /integration/sdk/consumer/events:
+  /integration/sdk/consumer/events/{id}:
     get:
       tags: ["learnir"]
       summary: Get consumer events
       description: "Gets an Array of your consumer events(objects) for answers on learning states. etc"
       operationId: records
       parameters:
-        - name: consumer
+        - name: id
           in: path
           description: The id of the created consumer
           required: true
