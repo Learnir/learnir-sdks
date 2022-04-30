@@ -4,7 +4,7 @@ servers:
 info:
   title: Learnir Javascript SDK
   description: Welcome to the Learnir Javascript sdk, get your content right in the browser anywhere and everywhere.
-  version: 1.0.9
+  version: 1.1.0
   contact:
     name: Learnir Engineering
     url: https://learnir.co
@@ -95,6 +95,28 @@ paths:
                 $ref: "#/components/schemas/Events"
         "404":
           description: Data requirements un-met. (Consumer_id and distribution_port)
+  /integration/sdk/consumer/interactions/{id}:
+    get:
+      tags: ["learnir"]
+      summary: Get consumer interactions data
+      description: "Gets an Array of your consumer interactions(objects) data. - e.g certification, quizzes data etc"
+      operationId: interactions
+      parameters:
+        - name: id
+          in: path
+          description: The id of the created consumer
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Consumer interactions is ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Interactions"
+        "404":
+          description: Data requirements un-met. (Consumer_id and distribution_port)
 
 components:
   schemas:
@@ -143,3 +165,20 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Event"
+    Interaction:
+      title: Consumer interaction object
+      description: Interaction data saved when consumer worked with a component
+      type: object
+      properties:
+        identifier:
+          type: string
+        comp:
+          type: string
+        component:
+          type: string
+        id:
+          type: string
+    Interactions:
+      type: array
+      items:
+        $ref: "#/components/schemas/Interaction"
