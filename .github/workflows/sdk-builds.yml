@@ -1,12 +1,4 @@
-# On changes, setup a simple local environment
-# Install nodejs, install the open-api-cli tooling
-# Run the open-api generator for the languages we want to build for
-# Each has to be explicitly written
-# We take the folder and commit it to a repository made for it
-
-# All parts have to be explicit so we know, we wrote what
-
-name: Build API CLients
+name: Build learnir SDK CLients
 on:
   push:
     branches:

@@ -4,7 +4,7 @@ servers:
 info:
   title: Learnir Javascript SDK
   description: Welcome to the Learnir Javascript sdk, get your content right in the browser anywhere and everywhere.
-  version: 1.1.0
+  version: 1.1.1
   contact:
     name: Learnir Engineering
     url: https://learnir.co
