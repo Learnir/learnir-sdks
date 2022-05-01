@@ -86,4 +86,16 @@ let official_events = [
 // Official events etc are already setup in templates
 // If making use of custom development(e.g from scratch) - recording these events is required
 // Other events if tyed to a consumed a consumer are welcome per your use case.
+
+
+
+
+// interactions - used for getting consumer interactions data (quizes, certifications etc)
+// combined with learnir-exp-module, components can be reviewed/resubmitted etc
+client.interactions("consumer-id").then(response => {
+    console.log("consumer-events", response.data);
+}).catch(error => {
+    console.log("consumer-events", error);
+})
+
 `````
